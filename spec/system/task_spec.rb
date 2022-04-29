@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'task', content: '卒業発表会', deadline: '2022-04-28', priority: '高', status: '未着手') }
+  #:create(:task)の引数にある:taskは、factory :task doの:taskを示している。それをlet!(:task)に代入している。
+  let!(:task) { FactoryBot.create(:task) }
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -30,8 +31,7 @@ RSpec.describe 'タスク管理機能', type: :system do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
          visit task_path(task.id)
-         binding.irb
-         expect(page).to have_content '卒業発表会'
+         expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
        end
      end
   end

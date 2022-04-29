@@ -7,6 +7,7 @@ FactoryBot.define do
   #   status { 'test_status' }
   # end
   #
+  #実際にテストの時に入力するデータ
   factory :task do
     title { 'Factoryで作ったデフォルトのタイトル１' }
     content { 'Factoryで作ったデフォルトのコンテント１' }
