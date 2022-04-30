@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    #taskを作成日時の降順に並び替え。
+    @tasks = Task.all.order(created_at: :desc)
   end
 
   def new
