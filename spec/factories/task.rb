@@ -10,7 +10,7 @@ FactoryBot.define do
   #実際にテストの時に入力するデータ
   factory :task do
     title { 'Factoryで作ったタイトル1' }
-    content { 'Factoryで作ったコンテント' }
+    content { 'Factoryで作ったコンテント1' }
     deadline { '2022-03-03' }
     priority { '低' }
     status { '未着手' }
