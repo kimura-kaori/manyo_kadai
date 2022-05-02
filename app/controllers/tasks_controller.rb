@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    #taskを作成日時の降順に並び替え。
-    @tasks = Task.all.order(created_at: :desc)
+    binding.irb
+    @tasks = Task.order("#{sort_column} #{sort_direction}")
   end
 
   def new
@@ -46,5 +47,13 @@ class TasksController < ApplicationController
 
   def tasks_params
     params.require(:task).permit(:title, :content, :deadline, :priority, :status)
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def sort_column
+    Task.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end

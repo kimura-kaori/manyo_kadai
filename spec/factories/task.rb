@@ -19,7 +19,7 @@ FactoryBot.define do
   factory :second_task, class: Task do
     title { 'Factoryで作ったタイトル2' }
     content { 'Factoryで作ったコンテント2' }
-    deadline { '2022-03-04' }
+    deadline { '2022-04-04' }
     priority { '高' }
     status { '未着手' }
   end
