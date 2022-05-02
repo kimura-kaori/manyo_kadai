@@ -32,12 +32,12 @@ Conect
 
 # H1デプロイの手順
 
-heroku login（ログインをする）<br>
-heroku create (Herokuに新しいアプリケーションを作成する）<br>
-git add-A（ステージングエリアへ追加）<br>
-git commit -m”init”（リポジトリに保存する）<br>
-heroku buildpacks:set heroku/ruby （Heroku buildpackを追加する）<br>
-heroku buildpacks:add —index 1 heroku/nodejs（Heroku buildpackを追加する）<br>
-git push heroku step2:master（デプロイをする）<br>
-heroku run rails db:migrate（マイグレーションの実行）<br>
-heroku open（アプリケーションにアクセスする）
+1.heroku login（ログインをする)  
+2.heroku create (Herokuに新しいアプリケーションを作成する）  
+3.git add-A（ステージングエリアへ追加）  
+4.git commit -m”init”（リポジトリに保存する）  
+5.heroku buildpacks:set heroku/ruby （Heroku buildpackを追加する）  
+6.heroku buildpacks:add —index 1 heroku/nodejs（Heroku buildpackを追加する）  
+7.git push heroku step2:master（デプロイをする）  
+8.heroku run rails db:migrate（マイグレーションの実行）  
+9.heroku open（アプリケーションにアクセスする）
