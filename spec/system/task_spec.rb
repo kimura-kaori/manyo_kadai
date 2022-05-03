@@ -12,7 +12,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in "task[content]", with: "自動化"
         fill_in "task[deadline]", with: "2022-02-01"
         fill_in "task[priority]", with: "高"
-        fill_in "task[status]", with: "未着手"
+        fill_in "task[status]", with: "start"
         click_on "登録する"
         expect(page).to have_content 'メーカー直送'
       end
@@ -21,8 +21,8 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '一覧表示機能' do
     before do
       # Task.destroy_all
-      FactoryBot.create(:task, title: 'task1', content: '卒業発表会', deadline: '2022-05-05', priority: '高', status: '未着手')
-      FactoryBot.create(:task, title: '最後のタスク', content: '卒業発表会', deadline: '2022-06-06', priority: '高', status: '未着手')
+      FactoryBot.create(:task, title: 'task1', content: '卒業発表会', deadline: '2022-05-05', priority: '高', status: 'start')
+      FactoryBot.create(:task, title: '最後のタスク', content: '卒業発表会', deadline: '2022-06-06', priority: '高', status: 'start')
       visit tasks_path
     end
     context '一覧画面に遷移した場合' do

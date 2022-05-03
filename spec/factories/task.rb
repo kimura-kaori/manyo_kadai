@@ -13,7 +13,7 @@ FactoryBot.define do
     content { 'Factoryで作ったコンテント1' }
     deadline { '2022-03-03' }
     priority { '低' }
-    status { '未着手' }
+    status { 'start' }
   end
 
   factory :second_task, class: Task do
@@ -21,6 +21,6 @@ FactoryBot.define do
     content { 'Factoryで作ったコンテント2' }
     deadline { '2022-04-04' }
     priority { '高' }
-    status { '未着手' }
+    status { 'start' }
   end
 end

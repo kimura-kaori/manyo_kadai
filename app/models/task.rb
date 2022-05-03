@@ -5,5 +5,5 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
 
-  enum status: { yet: 0, start: 1, completion: 2 }
+  enum status: [:yet, :start, :completion ]
 end
