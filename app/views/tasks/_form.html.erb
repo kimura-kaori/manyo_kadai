@@ -29,7 +29,7 @@
   </div>
   <div class="task_status">
     <%= form.label :status %>
-     <%= select :status,:name,Task.statuses.keys.to_a %>
+    <%= form.select :status, Task.statuses.keys, :selected=>Task.statuses[@task.status]  %>
   </div>
   <%= form.submit %>
 <% end %>
