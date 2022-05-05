@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @tasks = Task.order("#{sort_column} #{sort_direction}")
+    @tasks = Task.order("#{sort_column} #{sort_direction}").page(params[:page])
       if params[:title].present?
         @tasks = @tasks.get_by_title params[:title]
       end
@@ -43,11 +43,6 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path, notice:'削除しました'
   end
-
-  # def search
-  #   @tasks = Task.search(params[:keyword])
-  #     render "index"
-  # end
 
   private
 
