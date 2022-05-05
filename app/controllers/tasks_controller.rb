@@ -4,6 +4,12 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order("#{sort_column} #{sort_direction}")
+      if params[:title].present?
+        @tasks = @tasks.get_by_title params[:title]
+      end
+      if params[:status].present?
+        @tasks = @tasks.get_by_status params[:status]
+    end
   end
 
   def new
@@ -37,6 +43,11 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to tasks_path, notice:'削除しました'
   end
+
+  # def search
+  #   @tasks = Task.search(params[:keyword])
+  #     render "index"
+  # end
 
   private
 
