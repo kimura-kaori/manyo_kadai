@@ -44,15 +44,13 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-    # context 'タイトルのあいまい検索とステータス検索をした場合' do
-    #   it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
-    #     visit tasks_path
-    #     fill_in 'title', with: "メーカー直送"
-    #     select 'start', from: 'status'
-    #     click_on "検索"
-    #     expect(page).to have_content 'Factoryで作ったタイトル1'
-    #     expect(page).to have_content 'task1'
-    #     expect(page).to have_content '最後のタスク'
-    #   end
-    # end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        visit tasks_path
+        fill_in 'title', with: "Factory"
+        select 'start', from: 'status'
+        click_on "検索"
+        expect(page).to have_content 'Factoryで作ったタイトル1'
+      end
+    end
 end
