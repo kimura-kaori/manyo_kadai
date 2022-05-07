@@ -11,7 +11,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in "task[title]", with: "メーカー直送"
         fill_in "task[content]", with: "自動化"
         fill_in "task[deadline]", with: "2022-02-01"
-        fill_in "task_priority", with: "高"
+        select '低', from: 'task_priority'
         select 'yet', from: 'task_status'
         click_on "Create Task"
         expect(page).to have_content 'メーカー直送'
