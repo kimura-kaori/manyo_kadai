@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   # validates :status, presence: true
 
-  enum status: {yet:0, start:1, completion:2 }
+  enum status: {yet: 0, start: 1, completion: 2 }
 
   scope :get_by_title, ->(title) {
     where("title like ?","%#{title}%")

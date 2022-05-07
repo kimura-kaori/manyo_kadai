@@ -45,12 +45,20 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
 
     context 'タイトルのあいまい検索とステータス検索をした場合' do
-      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスクに絞り込まれる" do
         visit tasks_path
         fill_in 'title', with: "Factory"
         select 'start', from: 'status'
         click_on "検索"
         expect(page).to have_content 'Factoryで作ったタイトル1'
+      end
+    end
+
+    context '優先順位検索をした場合' do
+      it "優先順位が高い順にソートできる" do
+        visit tasks_path
+        click_link "優先度"
+        expect(page).to have_content '高'
       end
     end
 end
