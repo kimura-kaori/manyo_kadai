@@ -8,7 +8,7 @@ ja:
         name: 名前
         deadline: 終了期日
         priority: 優先順位
-        status: 状態
+        status: ステータス
         email: メールアドレス
         current_password: 現在のパスワード
         password: パスワード

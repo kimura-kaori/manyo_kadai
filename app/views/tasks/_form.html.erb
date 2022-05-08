@@ -25,11 +25,11 @@
   </div>
   <div class="task_priority">
     <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.select :priority, Task.priorities.keys, :selected=>Task.priorities[@task.priority]  %>
   </div>
   <div class="task_status">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.select :status, Task.statuses.keys, :selected=>Task.statuses[@task.status]  %>
   </div>
   <%= form.submit %>
 <% end %>

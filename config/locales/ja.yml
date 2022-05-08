@@ -1,4 +1,8 @@
 ja:
+ enums:
+  status:
+    status:
+      yet: '未着手'
   activerecord:
     errors:
       messages:
