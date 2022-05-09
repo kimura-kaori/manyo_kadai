@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'faker'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
