@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'faker'
+gem 'bcrypt'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
