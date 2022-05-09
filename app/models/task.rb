@@ -1,9 +1,8 @@
 class Task < ApplicationRecord
-  belongs_to :User
+  belongs_to :user
   validates :content, presence: true
   validates :deadline, presence: true
   validates :priority, presence: true
-  # validates :status, presence: true
 
   enum status: {yet: 0, start: 1, completion: 2 }
   enum priority: {低: 0, 中: 1, 高: 2 }

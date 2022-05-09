@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
+    @tasks = current_user.tasks
     @tasks = Task.order("#{sort_column} #{sort_direction}").page(params[:page])
       if params[:title].present?
         @tasks = @tasks.get_by_title params[:title]
@@ -13,11 +14,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def create
-    @task = Task.new(tasks_params)
+    @task = current_user.tasks.build(tasks_params)
     if @task.save
       redirect_to task_path(@task.id), notice:'作成しました'
     else
