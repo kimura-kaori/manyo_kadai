@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :admin_user
+
   def index
     @users = User.all.includes(:tasks)
   end
@@ -10,13 +11,24 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user.id)
+    else
+      render :new
+    end
   end
 
-  def show
+  def edit
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: "更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -30,5 +42,10 @@ class Admin::UsersController < ApplicationController
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
   end
 end
