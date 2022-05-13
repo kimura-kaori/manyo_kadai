@@ -15,5 +15,9 @@
     <%= user.label :password_confirmation,'パスワード確認' %>
     <%= user.text_field :password_confirmation %>
   </div>
+   <div>
+     <%= user.label :admin_check,'管理者権限' %>
+     <%=user.check_box :admin%>
+   </div>
   <%= user.submit %>
 <% end %>

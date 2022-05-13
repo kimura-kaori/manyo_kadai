@@ -44,10 +44,12 @@ class Admin::UsersController < ApplicationController
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?
+    # flash[:notice] = "アクセス権限がありません"
+
   end
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation, :admin)
   end
 end
