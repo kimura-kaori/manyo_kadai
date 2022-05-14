@@ -17,10 +17,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @tasks = @user.tasks
-    # @task = Task.where(user.id)
-
     @tasks = Task.where(user_id: @user.id)
+    if @user.id == current_user.id
+      render :show
+    else
+      redirect_to tasks_path
+    end  
   end
 
   private
