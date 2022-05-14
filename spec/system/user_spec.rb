@@ -51,16 +51,72 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
       end
     end
 
-  context 'ログイン後' do
-    it 'ログアウトができる' do
-    visit new_session_path
-    fill_in 'session_email', with: 'normal@normal.com'
-    fill_in 'session_password', with: '654321'
-    click_on "Log in"
-    click_on "Logout"
-    expect(page).to have_content 'Log in'
-  end
-  end
+    context 'ログイン後' do
+      it 'ログアウトができる' do
+      visit new_session_path
+      fill_in 'session_email', with: 'normal@normal.com'
+      fill_in 'session_password', with: '654321'
+      click_on "Log in"
+      click_on "Logout"
+      expect(page).to have_content 'Log in'
+      end
+    end
 
+
+    let(:admin_user) { FactoryBot.create(:admin_user) }
+    let(:user1) { FactoryBot.create(:user1) }
+    describe "管理画面のテスト" do
+
+      context '管理ユーザが管理画面にアクセスした場合' do
+        it '管理画面にアクセスできる' do
+        visit new_session_path
+        fill_in 'session_email', with: 'admin@admin.com'
+        fill_in 'session_password', with: '123456'
+        click_on "Log in"
+        visit admin_users_path
+        expect(page).to have_content 'ユーザー'
+        end
+      end
+      context '一般ユーザが管理画面にアクセスした場合' do
+        it '管理画面にアクセスできない' do
+        visit new_session_path
+        fill_in 'session_email', with: 'normal@normal.com'
+        fill_in 'session_password', with: '654321'
+        click_on "Log in"
+        visit admin_users_path
+        expect(page).to have_content 'タスク一覧'
+        end
+      end
+      context 'ユーザー一覧画面で新規登録をクリックした場合' do
+        it 'ユーザーの新規登録ができる' do
+        visit new_session_path
+        fill_in 'session_email', with: 'admin@admin.com'
+        fill_in 'session_password', with: '123456'
+        click_on "Log in"
+        visit admin_users_path
+        click_on "新規登録"
+        fill_in 'user_name', with: '木村'
+        fill_in 'user_email', with: 'abc@abc.com'
+        fill_in 'user_password', with: '111111'
+        fill_in 'user_password_confirmation', with: '111111'
+        click_on "登録する"
+        expect(page).to have_content '木村のページ'
+        end
+      end
+
+      context '管理ユーザがユーザの詳細をクリックした場合' do
+        it 'ユーザーの詳細画面にアクセスできる' do
+        visit new_session_path
+        fill_in 'session_email', with: 'admin@admin.com'
+        fill_in 'session_password', with: '123456'
+        click_on "Log in"
+        visit admin_users_path
+        binding.irb
+        click_on "新規登録"
+        visit admin_users_path
+        expect(page).to have_content '一般ユーザー1のページ'
+        end
+      end
+    end
   end
 end

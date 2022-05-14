@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :adin_user do
+  factory :admin_user, class: User do
     id { 1 }
     name { "管理者" }
     email { "admin@admin.com" }

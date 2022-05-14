@@ -23,6 +23,10 @@ class Admin::UsersController < ApplicationController
   def edit
   end
 
+  def show
+    @tasks = Task.where(user_id: @user.id)
+  end
+
   def update
     if @user.update(user_params)
       redirect_to admin_users_path, notice: "更新しました"
