@@ -46,7 +46,7 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
         fill_in 'session_email', with: 'normal@normal.com'
         fill_in 'session_password', with: '654321'
         click_on "Log in"
-        visit user_path(3)
+        visit user_path(4)
         expect(page).to have_content 'タスク一覧'
       end
     end
@@ -113,7 +113,7 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
         visit admin_users_path
         click_on '詳細', match: :first
 
-        expect(page).to have_content '管理者のページ'
+        expect(page).to have_content '一般ユーザー1のページ'
         end
       end
       context '管理ユーザがユーザ一覧画面の編集をクリックした場合' do
@@ -123,7 +123,7 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
         fill_in 'session_password', with: '123456'
         click_on "Log in"
         visit admin_users_path
-        all('tbody tr')[2].click_link '編集'
+        all('tbody tr')[3].click_link '編集'
         fill_in 'user_name', with: 'neko'
         fill_in 'user_password', with: '654321'
         fill_in 'user_password_confirmation', with: '654321'
@@ -138,7 +138,7 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
         fill_in 'session_password', with: '123456'
         click_on "Log in"
         visit admin_users_path
-        all('tbody tr')[2].click_link '削除'
+        all('tbody tr')[3].click_link '削除'
         expect(page).to have_content 'ユーザー一覧'
       end
       end
