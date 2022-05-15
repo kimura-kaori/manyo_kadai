@@ -104,18 +104,43 @@ RSpec.describe 'ユーザー管理機能' , type: :system do
         end
       end
 
-      context '管理ユーザがユーザの詳細をクリックした場合' do
+      context '管理ユーザがユーザ一覧画面の詳細をクリックした場合' do
         it 'ユーザーの詳細画面にアクセスできる' do
         visit new_session_path
         fill_in 'session_email', with: 'admin@admin.com'
         fill_in 'session_password', with: '123456'
         click_on "Log in"
         visit admin_users_path
-        binding.irb
-        click_on "新規登録"
-        visit admin_users_path
-        expect(page).to have_content '一般ユーザー1のページ'
+        click_on '詳細', match: :first
+
+        expect(page).to have_content '管理者のページ'
         end
+      end
+      context '管理ユーザがユーザ一覧画面の編集をクリックした場合' do
+        it 'ユーザーの編集画面にアクセスできる' do
+        visit new_session_path
+        fill_in 'session_email', with: 'admin@admin.com'
+        fill_in 'session_password', with: '123456'
+        click_on "Log in"
+        visit admin_users_path
+        all('tbody tr')[2].click_link '編集'
+        fill_in 'user_name', with: 'neko'
+        fill_in 'user_password', with: '654321'
+        fill_in 'user_password_confirmation', with: '654321'
+        click_on "Update User"
+        expect(page).to have_content 'ユーザー一覧'
+        end
+      end
+      context '管理ユーザがユーザ一覧画面の削除をクリックした場合' do
+        it 'ユーザの削除ができる' do
+        visit new_session_path
+        fill_in 'session_email', with: 'admin@admin.com'
+        fill_in 'session_password', with: '123456'
+        click_on "Log in"
+        visit admin_users_path
+        all('tbody tr')[2].click_link '削除'
+        expect(page).to have_content 'ユーザー一覧'
+      end
       end
     end
   end
