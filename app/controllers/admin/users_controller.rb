@@ -51,7 +51,6 @@ class Admin::UsersController < ApplicationController
       redirect_to(root_url)
       flash[:notice] = "アクセス権限がありません"
     else
-
     end
   end
 

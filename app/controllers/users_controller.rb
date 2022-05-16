@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :current_login?, only: [:new, :create]
 
   def new
     @user = User.new
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
       render :show
     else
       redirect_to tasks_path
-    end  
+    end
   end
 
   private
