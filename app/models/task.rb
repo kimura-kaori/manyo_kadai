@@ -1,9 +1,8 @@
 class Task < ApplicationRecord
-  # validates :title, presence: true
+  belongs_to :user
   validates :content, presence: true
   validates :deadline, presence: true
   validates :priority, presence: true
-  # validates :status, presence: true
 
   enum status: {yet: 0, start: 1, completion: 2 }
   enum priority: {低: 0, 中: 1, 高: 2 }
@@ -14,4 +13,5 @@ class Task < ApplicationRecord
   scope :get_by_status, ->(status){
     where(status: status)
   }
+  scope :desc_sort, ->{reorder(priority: :desc)}
   end

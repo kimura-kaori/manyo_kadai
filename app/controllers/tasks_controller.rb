@@ -1,23 +1,28 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column, :sort_direction
 
   def index
-    @tasks = Task.order("#{sort_column} #{sort_direction}").page(params[:page])
+    @tasks = current_user.tasks.order(created_at: :desc).page(params[:page])
       if params[:title].present?
-        @tasks = @tasks.get_by_title params[:title]
+        @tasks = @tasks.get_by_title (params[:title])
       end
       if params[:status].present?
         @tasks = @tasks.get_by_status params[:status]
-    end
+      end
+      if params[:deadline].present?
+        @tasks = @tasks.reorder(deadline: :desc)
+      end
+      if params[:priority]
+        @tasks = @tasks.desc_sort
+      end
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def create
-    @task = Task.new(tasks_params)
+    @task = current_user.tasks.build(tasks_params)
     if @task.save
       redirect_to task_path(@task.id), notice:'作成しました'
     else
@@ -52,13 +57,5 @@ class TasksController < ApplicationController
 
   def tasks_params
     params.require(:task).permit(:title, :content, :deadline, :priority, :status)
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  def sort_column
-    Task.column_names.include?(params[:sort]) ? params[:sort] : 'id'
   end
 end
