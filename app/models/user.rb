@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
 
   def admin_update_exist
-    if User.where(admin: true).count == 1 && self.admin 
+    if User.where(admin: true).count == 1 && self.admin == false
       throw(:abort)
     end
   end
