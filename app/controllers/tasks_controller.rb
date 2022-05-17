@@ -15,6 +15,9 @@ class TasksController < ApplicationController
       if params[:priority]
         @tasks = @tasks.desc_sort
       end
+      if params[:label_id].present?
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
+      end
   end
 
   def new
