@@ -16,3 +16,7 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      label:
+        All Blue: オールブルー
+        Grand Line: グランドライン
+        West Blue: ウェストブルー
