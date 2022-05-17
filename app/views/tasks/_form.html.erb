@@ -32,18 +32,13 @@
     <%= form.select :status, Task.statuses.keys, :selected=>Task.statuses[@task.status]  %>
   </div>
   <div class="field">
-   <% Label.all.each do |label| %>
-       <% if action_name == 'new' || action_name == 'create' %>
-         <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-         <label><%= label.name %></label>
-       <% elsif action_name == 'edit' || action_name == 'update' %>
-         <%= form.check_box :label_ids, { multiple: true, checked: @task.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-         <label><%= label.name %></label>
-       <% end %>
-     <% end %>
-   </div>
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: @task.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id] %>
+      <label><%= label.name %></label>
+    <% end %>
+    </div>
 
   <%= form.submit %>
-<% end %>
+  <% end %>
 
 <%= link_to "一覧画面にもどる", tasks_path %>

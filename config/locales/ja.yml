@@ -208,7 +208,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  label:
-    All Blue: "オールブルー"
-    Grand Line: "グランドライン"
-    West Blue: "ウェストブルー"  

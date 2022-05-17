@@ -22,8 +22,6 @@
 #              password_confirmation: "111111",
 #              admin: true)
 
-3.times do |n|
-  name = Faker::JapaneseMedia::OnePiece.sea
-  Label.create!(name: name,
-                )
+3.times do |i|
+  Label.create!(name: "sample#{i + 1}")
 end
