@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-3.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = Faker::Internet.email
   password = "password"
@@ -21,3 +21,23 @@ User.create!(name: "管理者",
              password: "111111",
              password_confirmation: "111111",
              admin: true)
+
+10.times do |i|
+  Label.create!(name: "sample#{i + 1}")
+end
+
+user_id = User.all[0..10]
+label_ids = Label.all[0..10]
+
+10.times do |i|
+  Task.create!(
+    title: "test#{i + 1}",
+    content: "テスト",
+    deadline: "2022-05-05",
+    priority: rand(0..2),
+    status: rand(0..2),
+    user_id: rand(10),
+    label_ids: rand(10)
+
+)
+end

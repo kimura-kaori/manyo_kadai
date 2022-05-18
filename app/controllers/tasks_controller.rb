@@ -15,6 +15,9 @@ class TasksController < ApplicationController
       if params[:priority]
         @tasks = @tasks.desc_sort
       end
+      if params[:label_id].present?
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
+      end
   end
 
   def new
@@ -56,6 +59,6 @@ class TasksController < ApplicationController
   end
 
   def tasks_params
-    params.require(:task).permit(:title, :content, :deadline, :priority, :status)
+    params.require(:task).permit(:title, :content, :deadline, :priority, :status, {label_ids: []})
   end
 end
